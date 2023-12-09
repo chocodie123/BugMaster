@@ -19,4 +19,13 @@ public:
 	
 	UPROPERTY(EditAnywhere)
 	class UProjectileMovementComponent* Projectile;
+	
+	UFUNCTION(BlueprintCallable)
+	float GroundAttackAnim();
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	UAnimMontage* GroundAttackMontage;
+
+	UFUNCTION(BlueprintCallable)
+	void GroundAttack();
 };

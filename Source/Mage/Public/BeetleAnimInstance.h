@@ -23,5 +23,6 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	bool bIsFly;
 	
-	
+	UFUNCTION()
+	void AnimNotify_BeetleGroundAttack();
 };

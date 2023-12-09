@@ -4,8 +4,10 @@
 #include "Beetle.h"
 
 #include "Components/CapsuleComponent.h"
+#include "Engine/DamageEvents.h"
 #include "GameFramework/ProjectileMovementComponent.h"
-#include "Math/TransformCalculus3D.h"
+#include "Kismet/KismetSystemLibrary.h"
+
 
 ABeetle::ABeetle()
 {
@@ -34,4 +36,33 @@ void ABeetle::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+float ABeetle::GroundAttackAnim()
+{
+	return PlayAnimMontage(GroundAttackMontage);		
+}
+
+void ABeetle::GroundAttack()
+{
+	TArray<FHitResult> Hits;
+	UE_LOG(LogTemp,Warning,TEXT("2"));
+	bool bTraceHit = UKismetSystemLibrary::SphereTraceMulti(GetWorld(),GetActorLocation(),GetActorLocation(),150,TraceTypeQuery1,
+		false,TArray<AActor*>(),EDrawDebugTrace::ForOneFrame,Hits,true);
+
+	if(bTraceHit)
+	{
+	UE_LOG(LogTemp,Warning,TEXT("3"));
+		for (const auto Item : Hits)
+		{
+			UE_LOG(LogTemp,Warning,TEXT("4"));
+			if (ACharacter* Character = Cast<ACharacter>(Item.GetActor()))
+			{
+				UE_LOG(LogTemp,Warning,TEXT("5"));
+				Cast<ACharacter>(Item.GetActor())->LaunchCharacter(FVector(20,0,100),false,false);
+				Item.GetActor()->TakeDamage(20,FDamageEvent(),nullptr,nullptr);
+			}
+		}
+		
+	}
 }
