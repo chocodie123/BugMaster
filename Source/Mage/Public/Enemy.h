@@ -32,8 +32,19 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	float CurrentHp;
 
+	UFUNCTION(BlueprintCallable)
+	void UpdateHP(float NewHp);
+	
 	void Die();
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser) override;
 	
+	UPROPERTY(EditAnywhere)
+	class UEnemyHPWidget* HPWidget;
+
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<class UEnemyHPWidget> HPWidgetFactory;
+	
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	class UWidgetComponent* HPComp;
 	
 };

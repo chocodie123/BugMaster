@@ -85,5 +85,6 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	TSubclassOf<class ABeetle> BeetleFactory;
+	
 };
 

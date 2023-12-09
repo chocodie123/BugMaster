@@ -12,6 +12,9 @@ APeople::APeople()
 		GetMesh()->SetRelativeTransform(FTransform(FRotator(0,-90,0),
 			FVector(0,0,-90),FVector(1)));
 	}
+
+	CurrentHp = 1000;
+	MaxHP = 1000;
 	
 	
 }
