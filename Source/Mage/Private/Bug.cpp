@@ -3,11 +3,15 @@
 
 #include "Bug.h"
 
+#include "BugInfo.h"
+
 // Sets default values
 ABug::ABug()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+	BugInfoComponent = CreateDefaultSubobject<UBugInfo>(TEXT("BugInfo"));
+	
 
 }
 

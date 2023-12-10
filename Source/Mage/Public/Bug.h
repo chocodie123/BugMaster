@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "Bug.generated.h"
 
+class UBugInfo;
+
 UCLASS()
 class MAGE_API ABug : public ACharacter
 {
@@ -26,4 +28,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly,Category="Components")
+	class UBugInfo* BugInfoComponent;
 };

@@ -4,6 +4,7 @@
 #include "BeetleAnimInstance.h"
 
 #include "Beetle.h"
+#include "BugInfo.h"
 
 
 void UBeetleAnimInstance::NativeInitializeAnimation()
@@ -14,9 +15,23 @@ void UBeetleAnimInstance::NativeInitializeAnimation()
 void UBeetleAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
+
+	ABeetle* OwnerBeetle = Cast<ABeetle>(TryGetPawnOwner());
+	if(OwnerBeetle)
+	{
+		if (OwnerBeetle->BugInfoComponent && OwnerBeetle->BugInfoComponent->bFlying)
+		{
+			bIsFly = true;
+		}
+		else
+		{
+			bIsFly = false;
+		}
+	}
+
 }
 
-void UBeetleAnimInstance::AnimNotify_BeetleGroundAttack()
+void UBeetleAnimInstance::AnimNotify_BeetleGroundAttack() const
 {
 	Cast<ABeetle>(TryGetPawnOwner())->GroundAttack();
 }

@@ -3,6 +3,7 @@
 
 #include "Beetle.h"
 
+#include "BugInfo.h"
 #include "Components/CapsuleComponent.h"
 #include "Engine/DamageEvents.h"
 #include "GameFramework/ProjectileMovementComponent.h"
@@ -30,6 +31,8 @@ ABeetle::ABeetle()
 	Projectile->Velocity = FVector(1.f,0,1.2f);
 
 	InitialLifeSpan = 10;
+
+	BugInfoComponent->Power = 20;
 }
 
 void ABeetle::BeginPlay()
@@ -46,21 +49,21 @@ float ABeetle::GroundAttackAnim()
 void ABeetle::GroundAttack()
 {
 	TArray<FHitResult> Hits;
-	UE_LOG(LogTemp,Warning,TEXT("2"));
+	
 	bool bTraceHit = UKismetSystemLibrary::SphereTraceMulti(GetWorld(),GetActorLocation(),GetActorLocation(),150,TraceTypeQuery1,
 		false,TArray<AActor*>(),EDrawDebugTrace::ForOneFrame,Hits,true);
 
 	if(bTraceHit)
 	{
-	UE_LOG(LogTemp,Warning,TEXT("3"));
+	
 		for (const auto Item : Hits)
 		{
-			UE_LOG(LogTemp,Warning,TEXT("4"));
+			
 			if (ACharacter* Character = Cast<ACharacter>(Item.GetActor()))
 			{
-				UE_LOG(LogTemp,Warning,TEXT("5"));
-				Cast<ACharacter>(Item.GetActor())->LaunchCharacter(FVector(20,0,100),false,false);
-				Item.GetActor()->TakeDamage(20,FDamageEvent(),nullptr,nullptr);
+				
+				Cast<ACharacter>(Item.GetActor())->LaunchCharacter(FVector(-Item.GetActor()->GetActorForwardVector().X*100,0,500),false,false);
+				Item.GetActor()->TakeDamage(BugInfoComponent->Power,FDamageEvent(),nullptr,nullptr);
 			}
 		}
 		

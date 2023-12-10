@@ -24,5 +24,5 @@ public:
 	bool bIsFly;
 	
 	UFUNCTION()
-	void AnimNotify_BeetleGroundAttack();
+	void AnimNotify_BeetleGroundAttack() const;
 };
