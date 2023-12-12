@@ -4,6 +4,8 @@
 #include "Bug.h"
 
 #include "BugInfo.h"
+#include "Kismet/GameplayStatics.h"
+#include "Mage/MageGameMode.h"
 
 // Sets default values
 ABug::ABug()
@@ -12,14 +14,13 @@ ABug::ABug()
 	PrimaryActorTick.bCanEverTick = false;
 	BugInfoComponent = CreateDefaultSubobject<UBugInfo>(TEXT("BugInfo"));
 	
-
 }
 
 // Called when the game starts or when spawned
 void ABug::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	BugInfoComponent = Cast<AMageGameMode>(UGameplayStatics::GetGameMode(GetWorld()))->MainGameBugInfo;
 }
 
 // Called every frame

@@ -12,6 +12,8 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
+#include "MageGameMode.h"
+#include "Kismet/GameplayStatics.h"
 
 DEFINE_LOG_CATEGORY(LogTemplateCharacter);
 
@@ -54,6 +56,7 @@ AMageCharacter::AMageCharacter()
 
 	// Note: The skeletal mesh and anim blueprint references on the Mesh component (inherited from Character) 
 	// are set in the derived blueprint asset named ThirdPersonCharacter (to avoid direct content references in C++)
+	
 }
 
 void AMageCharacter::BeginPlay()
@@ -69,6 +72,9 @@ void AMageCharacter::BeginPlay()
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+	
+	
+		
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -135,14 +141,24 @@ void AMageCharacter::Look(const FInputActionValue& Value)
 }
 
 void AMageCharacter::Bug()
-{
+{ 
 	PlayAnimMontage(BugSpawnMontage);
+	
 	FTimerHandle Handle;
+
+	
 	GetWorldTimerManager().SetTimer(Handle,[this]()
-	{
-		FTransform SpawnTransform = FTransform(GetActorRotation(),GetActorLocation()+
-			GetActorForwardVector()*100
-			,GetActorScale3D());
-		GetWorld()->SpawnActor<ABeetle>(BeetleFactory,SpawnTransform);
-	},0.3f,false);
+		{
+			FTransform SpawnTransform = FTransform(GetActorRotation(),GetActorLocation()+
+				GetActorForwardVector()*100
+				,GetActorScale3D());
+		if(UGameplayStatics::GetGameMode(GetWorld()))
+		{
+			Cast<AMageGameMode>(UGameplayStatics::GetGameMode(GetWorld()))->SpawnBeetle(SpawnTransform);
+		}
+		
+		},0.3f,false);	
+		
+	
+	
 }

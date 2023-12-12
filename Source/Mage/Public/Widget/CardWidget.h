@@ -24,5 +24,7 @@ public:
 
 	UPROPERTY(EditAnywhere,BlueprintReadWrite,meta =(BindWidget))
 	UTextBlock* ButtonDescriptionTextBlock;
-	
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	int32 CardNumber;
 };

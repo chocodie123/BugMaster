@@ -24,6 +24,7 @@ void UCardSelectWidget::NativeConstruct()
 			Card1->KeyArt->SetBrushResourceObject(RandItem->Image);
 			Card1->ButtonTextBlock->SetText(RandItem->Title);
 			Card1->ButtonDescriptionTextBlock->SetText(RandItem->SubTitle);
+			Card1->CardNumber = RandItem->CardNum;
 			Rows.RemoveAt(Random-1);
 
 			Random = FMath::RandRange(1,Rows.Num()-1);
@@ -31,6 +32,7 @@ void UCardSelectWidget::NativeConstruct()
 			Card2->KeyArt->SetBrushResourceObject(RandItem->Image);
 			Card2->ButtonTextBlock->SetText(RandItem->Title);
 			Card2->ButtonDescriptionTextBlock->SetText(RandItem->SubTitle);
+			Card2->CardNumber = RandItem->CardNum;
 			Rows.RemoveAt(Random-1);
 
 			Random = FMath::RandRange(1,Rows.Num()-2);
@@ -38,7 +40,7 @@ void UCardSelectWidget::NativeConstruct()
 			Card3->KeyArt->SetBrushResourceObject(RandItem->Image);
 			Card3->ButtonTextBlock->SetText(RandItem->Title);
 			Card3->ButtonDescriptionTextBlock->SetText(RandItem->SubTitle);
-			
+			Card3->CardNumber = RandItem->CardNum;
 		}
 		
 	}

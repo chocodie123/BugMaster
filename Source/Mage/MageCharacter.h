@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Bug.h"
 #include "InputActionValue.h"
 #include "GameFramework/Character.h"
 #include "Logging/LogMacros.h"
@@ -83,8 +84,7 @@ public:
 	UPROPERTY(EditAnywhere,BlueprintReadWrite)
 	class UAnimMontage* BugSpawnMontage;
 
-	UPROPERTY(EditAnywhere,BlueprintReadWrite)
-	TSubclassOf<class ABeetle> BeetleFactory;
+
 	
 };
 

@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "BugInfo.h"
 #include "GameFramework/GameModeBase.h"
 #include "MageGameMode.generated.h"
 
@@ -36,6 +37,7 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	int32 CardNum;
+	
 };
 
 
@@ -47,6 +49,17 @@ class AMageGameMode : public AGameModeBase
 
 public:
 	AMageGameMode();
+	UFUNCTION(BlueprintCallable)
+	void CardSelect(int32 CardNum);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	UBugInfo* MainGameBugInfo;
+
+	UFUNCTION(BlueprintCallable)
+	void SpawnBeetle(FTransform Transform);
+
+	UPROPERTY(EditAnywhere,BlueprintReadWrite)
+	TSubclassOf<class ABeetle> BeetleFactory;
 };
 
 

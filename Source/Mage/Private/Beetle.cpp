@@ -30,8 +30,7 @@ ABeetle::ABeetle()
 	Projectile->Bounciness = true;
 	Projectile->Velocity = FVector(1.f,0,1.2f);
 
-	InitialLifeSpan = 10;
-
+	
 	BugInfoComponent->Power = 20;
 }
 

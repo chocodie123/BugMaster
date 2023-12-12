@@ -34,5 +34,7 @@ public:
 	bool bFlying;
 	UPROPERTY(EditAnywhere,BlueprintReadOnly,Category="Skill")
 	bool bIsWindAttack;
+
+
 	
 };
